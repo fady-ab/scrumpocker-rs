@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/css/pico.min.css" rel="stylesheet">
+    <link href="/public/css/session.css" rel="stylesheet">
+    <title>Scrum Poker - Session</title>
+</head>
+<body data-room-id="{{room_id}}">
+    <img src="/public/jobber-icon.svg" alt="Jobber" style="position: fixed; top: 20px; left: 20px; height: 40px; z-index: 1000;">
+    <div class="join-interface">
+        <main class="join-container">
+            <h1 style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Scrum Poker</span>
+                <img src="/public/campaigns.gif" alt="Campaigns" style="height: 2em;">
+            </h1>
+            <div class="session-code-display">
+                Session Code: <strong>{{room_id}}</strong>
+            </div>
+            <article>
+                <label for="nameInput">Name</label>
+                <input type="text" id="nameInput" placeholder="Enter your name" required autofocus>
+                <button id="joinBtn">Join Session</button>
+            </article>
+        </main>
+    </div>
+
+    <main class="container session-interface">
+        <div class="header">
+            <h1 style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Scrum Poker</span>
+                <img src="/public/campaigns.gif" alt="Campaigns" style="height: 2em;">
+            </h1>
+            <div class="session-badge">{{room_id}}</div>
+        </div>
+
+        <div class="share-section">
+            <div class="section-title">Share this session</div>
+            <div class="share-url-container">
+                <div class="share-url" id="shareUrl"></div>
+                <button class="copy-btn secondary" onclick="copyUrl()">Copy</button>
+            </div>
+        </div>
+
+        <div class="voting-section">
+            <div class="section-title">Your Vote</div>
+            <div class="voting-buttons">
+                <button onclick="vote('1')">1</button>
+                <button onclick="vote('2')">2</button>
+                <button onclick="vote('3')">3</button>
+                <button onclick="vote('5')">5</button>
+                <button onclick="vote('8')">8</button>
+                <button onclick="vote('?')">?</button>
+            </div>
+        </div>
+
+        <div class="users-section">
+            <div class="section-title">Participants</div>
+            <div class="users-list" id="usersList">
+                <div class="empty-state">Waiting for participants...</div>
+            </div>
+        </div>
+
+        <div id="stats-container" style="display: none; margin-bottom: 1rem;">
+            <div class="section-title">Statistics</div>
+            <div>Mean: <strong id="mean-value">-</strong></div>
+        </div>
+
+        <div class="controls">
+            <button onclick="showEstimates()">Show Estimates</button>
+            <button onclick="clearEstimates()" class="secondary">Clear All</button>
+        </div>
+    </main>
+
+    <script src="/public/js/session.js"></script>
+</body>
+</html>
